@@ -21,19 +21,32 @@ src="https://www.facebook.com/tr?id=1587486515497464&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
  
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="screen-orientation" content="portrait">
+<meta name="x5-orientation" content="portrait">
+<meta name="full-screen" content="yes">
 <title>Earn With Mani</title>
 <style>
   * { box-sizing: border-box; }
-  body {
+  html, body {
     margin: 0;
+    height: 100%;
+    background: #f4f4f4;
+  }
+  body {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f4f4f4;
     font-family: 'Segoe UI', Arial, sans-serif;
     padding: 20px;
+    overflow-x: hidden;
+  }
+
+  /* Fixed portrait-sized frame - stays the same on phone and PC */
+  .frame {
+    width: 400px;
+    max-width: 100%;
   }
 
   .card {
@@ -41,7 +54,6 @@ src="https://www.facebook.com/tr?id=1587486515497464&ev=PageView&noscript=1"
     border-radius: 24px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     padding: 32px 24px;
-    max-width: 360px;
     width: 100%;
     text-align: center;
   }
@@ -114,10 +126,26 @@ src="https://www.facebook.com/tr?id=1587486515497464&ev=PageView&noscript=1"
     color: #888;
     line-height: 1.5;
   }
+
+  /* Force portrait: if the device is physically rotated to landscape,
+     rotate the whole page back so it always displays upright & portrait */
+  @media screen and (orientation: landscape) and (max-height: 500px) {
+    html {
+      transform: rotate(-90deg);
+      transform-origin: left top;
+      width: 100vh;
+      height: 100vw;
+      overflow-x: hidden;
+      position: absolute;
+      top: 100%;
+      left: 0;
+    }
+  }
 </style>
 </head>
 <body>
 
+  <div class="frame">
   <div class="card">
     <img class="avatar" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhAf4FmYVaVFqcCwZi_jOykGqzZ5YosVpQlfOsOGAjqtAT6HbWBtvXehYRXf2G67jJ3MQXwTFwQN_AwnmVqmWGc0QvjWpeApgjgzUld4C55la0Nsom_9RFIMa42frGSfq-VGWxWUoOe_FG_Fcd2bAMKPImBEFjkhFrUBTJ-78A6_hwD_6XRQAzAK2AmFPLz/s1600/From_Klickpin_com_Bookmark_these_dreamy_ways_to_style_your_kids.jpg" alt="avatar">
 
@@ -138,6 +166,7 @@ src="https://www.facebook.com/tr?id=1587486515497464&ev=PageView&noscript=1"
     <div class="disclaimer">
       Disclaimer: Join this channel at your own responsibility. The advertising agency holds no liability or responsibility for any content, services, or activities hosted within the Telegram channel.
     </div>
+  </div>
   </div>
 
   <script>
