@@ -21,17 +21,14 @@ src="https://www.facebook.com/tr?id=1587486515497464&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
  
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="screen-orientation" content="portrait">
-<meta name="x5-orientation" content="portrait">
-<meta name="full-screen" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Earn With Mani</title>
 <style>
   * { box-sizing: border-box; }
   html, body {
     margin: 0;
     height: 100%;
-    background: #dcdcdc;
+    background: #000000;
   }
   body {
     min-height: 100vh;
@@ -51,7 +48,7 @@ src="https://www.facebook.com/tr?id=1587486515497464&ev=PageView&noscript=1"
     max-height: 100vh;
     background: #f4f4f4;
     border-radius: 36px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -120,6 +117,7 @@ src="https://www.facebook.com/tr?id=1587486515497464&ev=PageView&noscript=1"
 
   .join-btn .icon {
     font-size: 18px;
+    pointer-events: none;
   }
 
   .timer {
@@ -153,8 +151,11 @@ src="https://www.facebook.com/tr?id=1587486515497464&ev=PageView&noscript=1"
   }
 
   /* Force portrait: if the device is physically rotated to landscape,
-     rotate the whole page back so it always displays upright & portrait */
-  @media screen and (orientation: landscape) and (max-height: 500px) {
+     rotate the whole page back so it always displays upright & portrait.
+     Narrow height threshold so this never fires inside wide, short preview
+     iframes (e.g. ad-platform tools), which can otherwise misread click
+     coordinates for event tracking. */
+  @media screen and (orientation: landscape) and (max-height: 430px) {
     html {
       transform: rotate(-90deg);
       transform-origin: left top;
