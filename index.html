@@ -21,63 +21,70 @@ src="https://www.facebook.com/tr?id=1587486515497464&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
  
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="screen-orientation" content="portrait">
+<meta name="x5-orientation" content="portrait">
+<meta name="full-screen" content="yes">
 <title>Earn With Mani</title>
 <style>
-  * { box-sizing: border-box; }
+  * { 
+    box-sizing: border-box; 
+  }
+  
   html, body {
     margin: 0;
-    height: 100%;
-    background: #000000;
-  }
-  body {
+    padding: 0;
+    width: 100%;
     min-height: 100vh;
+    background: #000000; /* Outer screen black */
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+
+  body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Segoe UI', Arial, sans-serif;
     overflow-x: hidden;
   }
 
-  /* Phone-shaped screen: fixed portrait size on desktop (looks like a device),
-     fills the real screen edge-to-edge on actual phones */
-  .device {
-    width: 420px;
-    height: 860px;
-    max-width: 100vw;
-    max-height: 100vh;
-    background: #f4f4f4;
+  /* MOBILE PHONE VIEWPORT: White portrait container centered on black background */
+  .frame {
+    width: 100%;
+    max-width: 420px;
+    height: 90vh;
+    max-height: 860px;
+    background: #f4f4f4; /* White/Light background area inside phone screen */
     border-radius: 36px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
-    overflow-y: auto;
+    position: relative;
+    overflow: hidden;
   }
 
-  @media (max-width: 480px), (max-height: 700px) {
-    .device {
-      width: 100vw;
-      height: 100dvh;
-      max-height: 100dvh;
+  /* On actual mobile devices, expand to full screen seamlessly */
+  @media (max-width: 480px) {
+    body {
+      background: #f4f4f4;
+    }
+    .frame {
+      height: 100vh;
+      max-height: 100vh;
       border-radius: 0;
       box-shadow: none;
     }
   }
 
-  .frame {
-    width: 100%;
-    max-width: 360px;
-  }
-
   .card {
     background: #ffffff;
-    border-radius: 24px;
+    border-radius: 28px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    padding: 32px 24px;
+    padding: 36px 24px;
     width: 100%;
     text-align: center;
+    position: relative;
   }
 
   .avatar {
@@ -86,7 +93,8 @@ src="https://www.facebook.com/tr?id=1587486515497464&ev=PageView&noscript=1"
     border-radius: 50%;
     border: 4px solid #e6136b;
     object-fit: cover;
-    margin-bottom: 16px;
+    margin: 0 auto 16px;
+    display: block;
   }
 
   .name {
@@ -98,26 +106,23 @@ src="https://www.facebook.com/tr?id=1587486515497464&ev=PageView&noscript=1"
   }
 
   .join-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+    display: block;
     width: 100%;
     padding: 16px 20px;
     border: none;
     border-radius: 40px;
     background: linear-gradient(90deg, #e6136b 0%, #7b2ff7 50%, #1e3c8c 100%);
-    color: #fff;
+    color: #ffffff;
     font-size: 17px;
     font-weight: 700;
     cursor: pointer;
     text-decoration: none;
-    position: relative;
+    text-align: center;
   }
 
   .join-btn .icon {
     font-size: 18px;
-    pointer-events: none;
+    margin-right: 6px;
   }
 
   .timer {
@@ -146,16 +151,12 @@ src="https://www.facebook.com/tr?id=1587486515497464&ev=PageView&noscript=1"
   .disclaimer {
     margin-top: 22px;
     font-size: 10px;
-    color: #888;
+    color: #888888;
     line-height: 1.5;
   }
 
-  /* Force portrait: if the device is physically rotated to landscape,
-     rotate the whole page back so it always displays upright & portrait.
-     Narrow height threshold so this never fires inside wide, short preview
-     iframes (e.g. ad-platform tools), which can otherwise misread click
-     coordinates for event tracking. */
-  @media screen and (orientation: landscape) and (max-height: 430px) {
+  /* Rotation fallback */
+  @media screen and (orientation: landscape) and (max-height: 500px) {
     html {
       transform: rotate(-90deg);
       transform-origin: left top;
@@ -166,43 +167,33 @@ src="https://www.facebook.com/tr?id=1587486515497464&ev=PageView&noscript=1"
       top: 100%;
       left: 0;
     }
-    .device {
-      width: 100vh;
-      height: 100vw;
-      max-width: 100vh;
-      max-height: 100vw;
-      border-radius: 0;
-      box-shadow: none;
-    }
   }
 </style>
 </head>
 <body>
 
-  <div class="device">
   <div class="frame">
-  <div class="card">
-    <img class="avatar" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhAf4FmYVaVFqcCwZi_jOykGqzZ5YosVpQlfOsOGAjqtAT6HbWBtvXehYRXf2G67jJ3MQXwTFwQN_AwnmVqmWGc0QvjWpeApgjgzUld4C55la0Nsom_9RFIMa42frGSfq-VGWxWUoOe_FG_Fcd2bAMKPImBEFjkhFrUBTJ-78A6_hwD_6XRQAzAK2AmFPLz/s1600/From_Klickpin_com_Bookmark_these_dreamy_ways_to_style_your_kids.jpg" alt="avatar">
+    <div class="card">
+      <img class="avatar" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhAf4FmYVaVFqcCwZi_jOykGqzZ5YosVpQlfOsOGAjqtAT6HbWBtvXehYRXf2G67jJ3MQXwTFwQN_AwnmVqmWGc0QvjWpeApgjgzUld4C55la0Nsom_9RFIMa42frGSfq-VGWxWUoOe_FG_Fcd2bAMKPImBEFjkhFrUBTJ-78A6_hwD_6XRQAzAK2AmFPLz/s1600/From_Klickpin_com_Bookmark_these_dreamy_ways_to_style_your_kids.jpg" alt="avatar">
 
-    <div class="name">Earn With Mani</div>
+      <div class="name">Earn With Mani</div>
 
-    <a id="joinBtn" class="join-btn" href="https://t.me/+W6D4-sxN63ZhMDY1" rel="noopener">
-      <span class="icon">&#9992;&#65039;</span> Join Free Telegram
-    </a>
+      <a id="joinBtn" class="join-btn" href="https://t.me/+W6D4-sxN63ZhMDY1" rel="noopener">
+        <span class="icon">&#9992;&#65039;</span> Join Free Telegram
+      </a>
 
-    <div class="timer" id="timer">00 : 00 : 00 : 55</div>
-    <div class="labels">
-      <span>DAYS</span>
-      <span>HOURS</span>
-      <span>MINUTES</span>
-      <span>SECONDS</span>
+      <div class="timer" id="timer">00 : 00 : 00 : 55</div>
+      <div class="labels">
+        <span>DAYS</span>
+        <span>HOURS</span>
+        <span>MINUTES</span>
+        <span>SECONDS</span>
+      </div>
+
+      <div class="disclaimer">
+        Disclaimer: Join this channel at your own responsibility. The advertising agency holds no liability or responsibility for any content, services, or activities hosted within the Telegram channel.
+      </div>
     </div>
-
-    <div class="disclaimer">
-      Disclaimer: Join this channel at your own responsibility. The advertising agency holds no liability or responsibility for any content, services, or activities hosted within the Telegram channel.
-    </div>
-  </div>
-  </div>
   </div>
 
   <script>
