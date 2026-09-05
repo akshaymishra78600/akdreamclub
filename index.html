@@ -31,7 +31,7 @@ src="https://www.facebook.com/tr?id=1587486515497464&ev=PageView&noscript=1"
   html, body {
     margin: 0;
     height: 100%;
-    background: #f4f4f4;
+    background: #dcdcdc;
   }
   body {
     min-height: 100vh;
@@ -39,14 +39,39 @@ src="https://www.facebook.com/tr?id=1587486515497464&ev=PageView&noscript=1"
     align-items: center;
     justify-content: center;
     font-family: 'Segoe UI', Arial, sans-serif;
-    padding: 20px;
     overflow-x: hidden;
   }
 
-  /* Fixed portrait-sized frame - stays the same on phone and PC */
+  /* Phone-shaped screen: fixed portrait size on desktop (looks like a device),
+     fills the real screen edge-to-edge on actual phones */
+  .device {
+    width: 420px;
+    height: 860px;
+    max-width: 100vw;
+    max-height: 100vh;
+    background: #f4f4f4;
+    border-radius: 36px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  @media (max-width: 480px), (max-height: 700px) {
+    .device {
+      width: 100vw;
+      height: 100dvh;
+      max-height: 100dvh;
+      border-radius: 0;
+      box-shadow: none;
+    }
+  }
+
   .frame {
-    width: 400px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 360px;
   }
 
   .card {
@@ -140,11 +165,20 @@ src="https://www.facebook.com/tr?id=1587486515497464&ev=PageView&noscript=1"
       top: 100%;
       left: 0;
     }
+    .device {
+      width: 100vh;
+      height: 100vw;
+      max-width: 100vh;
+      max-height: 100vw;
+      border-radius: 0;
+      box-shadow: none;
+    }
   }
 </style>
 </head>
 <body>
 
+  <div class="device">
   <div class="frame">
   <div class="card">
     <img class="avatar" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhAf4FmYVaVFqcCwZi_jOykGqzZ5YosVpQlfOsOGAjqtAT6HbWBtvXehYRXf2G67jJ3MQXwTFwQN_AwnmVqmWGc0QvjWpeApgjgzUld4C55la0Nsom_9RFIMa42frGSfq-VGWxWUoOe_FG_Fcd2bAMKPImBEFjkhFrUBTJ-78A6_hwD_6XRQAzAK2AmFPLz/s1600/From_Klickpin_com_Bookmark_these_dreamy_ways_to_style_your_kids.jpg" alt="avatar">
@@ -166,6 +200,7 @@ src="https://www.facebook.com/tr?id=1587486515497464&ev=PageView&noscript=1"
     <div class="disclaimer">
       Disclaimer: Join this channel at your own responsibility. The advertising agency holds no liability or responsibility for any content, services, or activities hosted within the Telegram channel.
     </div>
+  </div>
   </div>
   </div>
 
