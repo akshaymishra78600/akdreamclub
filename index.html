@@ -79,14 +79,6 @@ src="https://www.facebook.com/tr?id=1587486515497464&ev=PageView&noscript=1"
     cursor: pointer;
     text-decoration: none;
     position: relative;
-    opacity: 0.5;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
-
-  .join-btn.active {
-    opacity: 1;
-    pointer-events: auto;
   }
 
   .join-btn .icon {
@@ -131,7 +123,7 @@ src="https://www.facebook.com/tr?id=1587486515497464&ev=PageView&noscript=1"
 
     <div class="name">Earn With Mani</div>
 
-    <a id="joinBtn" class="join-btn" href="https://t.me/+W6D4-sxN63ZhMDY1" target="_blank" rel="noopener">
+    <a id="joinBtn" class="join-btn" href="https://t.me/+W6D4-sxN63ZhMDY1" rel="noopener">
       <span class="icon">&#9992;&#65039;</span> Join Free Telegram
     </a>
 
@@ -150,8 +142,14 @@ src="https://www.facebook.com/tr?id=1587486515497464&ev=PageView&noscript=1"
 
   <script>
     let seconds = 55;
+    let redirected = false;
     const timerEl = document.getElementById('timer');
     const btn = document.getElementById('joinBtn');
+
+    btn.addEventListener('click', function () {
+      redirected = true;
+      clearInterval(interval);
+    });
 
     function pad(n) {
       return n.toString().padStart(2, '0');
@@ -161,8 +159,10 @@ src="https://www.facebook.com/tr?id=1587486515497464&ev=PageView&noscript=1"
       timerEl.textContent = `00 : 00 : 00 : ${pad(seconds)}`;
       if (seconds <= 0) {
         clearInterval(interval);
-        btn.classList.add('active');
-        window.location.href = btn.href;
+        if (!redirected) {
+          redirected = true;
+          window.location.href = btn.href;
+        }
       }
       seconds--;
     }
